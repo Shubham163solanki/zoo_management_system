@@ -1,0 +1,37 @@
+select *
+from Animal_details
+where gestation_month < 5;
+
+SELECT visitor_id, age, museum_ticket_code, zoo_ticket_code, ticket_type_enum
+FROM visitor_details
+where age BETWEEN 3 and 10;
+
+SELECT CONCAT(coupon_no ,' ENJOYED ',food_name) AS ' FEEDBACK '
+FROM food_court WHERE food_name='Pasta';
+
+SELECT staff_id,staff_name,job_type,salary,job_duration
+FROM staff_details
+WHERE job_duration IN ('9 years','15 years','8 years');
+
+SELECT animal_id 'ID', IMPORT_COST 'COST' FROM animal_import 
+ORDER BY COST ASC;
+
+SELECT salary, count(salary)
+FROM staff_details GROUP BY salary;
+
+SELECT STAFF_ID,staff_name,email_address,shifting_time 
+FROM staff_details WHERE shifting_time like '%MORNING%';
+
+
+SELECT *
+FROM animal_import i JOIN Animal_details l
+ON (i.animal_id = l.animal_id) 
+where i.PLACE = 'AFRICA' ;
+
+SELECT visitor_details.visitor_id, visitor_details.coupon_no,
+visitor_details.ticket_type_enum,visitor_details.age,visitor_details.zoo_ticket_code
+FROM visitor_details 
+WHERE visitor_details.coupon_no 
+IN(select food_court.coupon_no from food_court where food_name ='Pasta');
+
+SELECT MAX(IMPORT_COST) 'MAXIMUM COST' FROM animal_import;
